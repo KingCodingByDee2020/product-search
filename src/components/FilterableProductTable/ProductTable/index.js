@@ -1,18 +1,15 @@
-import api from "api";
-import { useEffect, useState } from "react";
+import TBody from "./TBody";
 
 const ProductTable = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      // Await results of reading stream as JSON
-      const productData = await api.index();
-      setProducts(() => productData);
-    })();
-  });
-
-  return <table></table>;
+  return (
+    <table>
+      <thead>
+        <td>Name</td>
+        <td>Price</td>
+      </thead>
+      <TBody />
+    </table>
+  );
 };
 
 export default ProductTable;
