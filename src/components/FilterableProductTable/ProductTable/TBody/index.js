@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import Row from "./Row";
 
 function renderRows(products) {
-  return products.map(({ name }, index) => <Row name={name} key={index} />);
+  return products.map(({ name, price }, index) => (
+    <Row name={name} price={price} key={index} />
+  ));
 }
 
 const TBody = () => {
@@ -16,6 +18,7 @@ const TBody = () => {
       setProducts(() => productData);
     })();
   });
+
   return <tbody>{renderRows(products)}</tbody>;
 };
 
