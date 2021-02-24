@@ -1,5 +1,5 @@
 const SearchBar = () => (
-  <div>
+  <div className="mb-4">
     <label htmlFor="search" className="sr-only">
       Search
     </label>

@@ -2,10 +2,12 @@ import TBody from "./TBody";
 
 const ProductTable = () => {
   return (
-    <table>
+    <table className="w-1/4">
       <thead>
-        <td>Name</td>
-        <td>Price</td>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
       </thead>
       <TBody />
     </table>
