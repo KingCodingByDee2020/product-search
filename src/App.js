@@ -1,5 +1,7 @@
+import { FilterableTable } from "./components";
+
 function App() {
-  return <div></div>;
+  return <FilterableTable />;
 }
 
 export default App;
