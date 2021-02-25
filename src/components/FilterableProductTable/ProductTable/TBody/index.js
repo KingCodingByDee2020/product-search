@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Fragment } from "react";
 import Row from "./Row";
 
 // TBody will receive filtered products - and will send one at a time to Row for rendering
@@ -11,10 +12,10 @@ function renderRows(products) {
       <Row name={name} price={price} key={index} stocked={stocked} />
     ) : (
       // If it's a new category, render 2 rows...
-      <>
-        <Row category={category} key={"cat" + index} />
-        <Row name={name} price={price} stocked={stocked} key={index} />
-      </>
+      <Fragment key={index}>
+        <Row category={category} />
+        <Row name={name} price={price} stocked={stocked} />
+      </Fragment>
     )
   );
 }
