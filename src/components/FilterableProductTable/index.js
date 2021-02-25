@@ -17,7 +17,7 @@ const FilterableProductTable = () => {
   return (
     <main className="container mx-auto w-1/2 flex flex-col items-center mt-8">
       <Search searchHandler={handleKeyUp} inStockHandler={handleChange} />
-      <Table />
+      <Table searchTerm={searchTerm} inStockOnly={inStockOnly} />
     </main>
   );
 };
