@@ -1,6 +1,7 @@
-import api from "api";
-import { useEffect, useState } from "react";
 import Row from "./Row";
+import PropTypes from 'prop-types'
+
+// TBody will receive filtered products - and will send one at a time to Row for rendering
 
 function renderRows(products) {
   return products.map(({ name, price, category, stocked }, index, currArr) =>
@@ -18,31 +19,15 @@ function renderRows(products) {
   );
 }
 
-const TBody = () => {
-  const [products, setProducts] = useState([]);
+const TBody = ({products}) => <tbody>{renderRows(products)}</tbody>
 
-  useEffect(
-    () => {
-      (async () => {
-        // Await results of reading stream as JSON
-        const productData = await api.index();
-        setProducts(() => productData);
-      })();
-    },
-
-    /**
-     * 2nd argument to `useEffect` is an Array.
-     * This array tells `useEffect` what pieces of state it
-     * should watch.
-     *
-     * An empty array means that `useEffect` should never run again
-     * after initial load - as it's not watching any state.
-     */
-    []
-  );
-
-  // Trim duplicate categories from the catalog
-  return <tbody>{renderRows(products)}</tbody>;
-};
+TBody.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.exact({
+    name: PropTypes.string,
+    price: PropTypes.string,
+    stocked: PropTypes.bool,
+    category: PropTypes.string
+  }))
+}
 
 export default TBody;
