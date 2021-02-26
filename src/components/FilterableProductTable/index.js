@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 import Table from "./ProductTable";
 import Search from "./SearchBar";
+
+// Create the client ONE TIME (not every re-render)
+const qc = new QueryClient();
 
 const FilterableProductTable = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,7 +21,9 @@ const FilterableProductTable = () => {
   return (
     <main className="container mx-auto w-1/2 flex flex-col items-center mt-8">
       <Search searchHandler={handleKeyUp} inStockHandler={handleChange} />
-      <Table searchTerm={searchTerm} inStockOnly={inStockOnly} />
+      <QueryClientProvider client={qc}>
+        <Table searchTerm={searchTerm} inStockOnly={inStockOnly} />
+      </QueryClientProvider>
     </main>
   );
 };
