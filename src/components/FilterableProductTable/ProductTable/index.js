@@ -6,15 +6,6 @@ import TBody from "./TBody";
 const ProductTable = ({ inStockOnly, searchTerm }) => {
   const [products, setProducts] = useState([]);
 
-  const filters = {
-    inStockOnly(item) {
-      return item.stocked;
-    },
-    searchTerm(item) {
-      return item.name.toLowerCase().includes(searchTerm.toLowerCase());
-    },
-  };
-
   useEffect(() => {
     (async () => {
       // Await results of reading stream as JSON
